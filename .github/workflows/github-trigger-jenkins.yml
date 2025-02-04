@@ -7,5 +7,6 @@ jobs:
     steps:
       - name: Trigger Jenkins Job via API
         run: |
-          curl -X POST"http://13.201.137.138:8080/job/GitHub_Trigger/build" \
+          curl -X POST "http://13.201.137.138:8080/job/GitHub_Trigger/build"
+          \
             --user "${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_PAT }}"
