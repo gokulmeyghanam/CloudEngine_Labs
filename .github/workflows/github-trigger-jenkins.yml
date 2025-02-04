@@ -5,7 +5,6 @@ jobs:
   trigger-jenkins:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Jenkins Job via API
-        run: |
-          curl -X POST "http://13.201.137.138:8080/job/GitHub_Trigger/build" \
-            --user "${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_PAT }}"
+      - name: Trigger Jenkins Job  
+        run: curl -u "${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_PAT 
+          }}" -X POST "http://13.201.137.138:8080/job/GitHub_Trigger/build"
