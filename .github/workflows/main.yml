@@ -1,11 +1,5 @@
-name: Trigger Jenkins Job
-
-on:
-  push:
-    branches: [ "main" ] # Trigger on push to 'main' branch
-  pull_request:
-    branches: [ "main" ] # Trigger on pull requests to 'main' branch
-
+name: trigger jenkins job
+on: [push]
 jobs:
   trigger-jenkins:
     runs-on: ubuntu-latest
