@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: trigger
-        uses: shihyuho/go-jenkins-trigger@v1
+        uses: mickeygoussetorg/trigger-jenkins-job@v1
         with:
           jenkins-url: 'http://52.66.249.21:8080'
           jenkins-user: ${{ secrets.JENKINS_USER }}
