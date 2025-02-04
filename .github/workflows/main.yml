@@ -1,0 +1,24 @@
+name: Trigger Jenkins Job
+
+on:
+  push:
+    branches: [ "main" ] # Trigger on push to 'main' branch
+  pull_request:
+    branches: [ "main" ] # Trigger on pull requests to 'main' branch
+
+jobs:
+  trigger_jenkins:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Trigger Jenkins Job
+        uses: jenkinsci/jenkins-plugin@v1.0.0
+        with:
+          jenkins_url: 'http://52.66.249.21:8080/' # Replace with your Jenkins server URL
+          jenkins_user: 'CloudEngineLabs' # Replace with your Jenkins username
+          jenkins_token: ${{ secrets.JENKINS_TOKEN }} # Use a GitHub Secret for your Jenkins API Token
+          job_name: 'GitHub_Trigger' # Replace with the name of your Jenkins job
+          wait_for_job: 'true' # Wait for the Jenkins job to complete
+          fail_if_job_failed: 'true' # Fail the GitHub Action if the Jenkins job fails
