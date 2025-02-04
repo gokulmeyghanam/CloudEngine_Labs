@@ -1,13 +1,11 @@
-name: trigger jenkins job
+name: Trigger Jenkins Job
 on: [push]
+
 jobs:
   trigger-jenkins:
     runs-on: ubuntu-latest
     steps:
-      - id: trigger
-        uses: catthehacker/jenkins-action@v3
-        with:
-          jenkins-url: 'http://52.66.249.21:8080'
-          jenkins-user: ${{ secrets.JENKINS_USER }}
-          jenkins-pat: ${{ secrets.JENKINS_PAT }}
-          job: 'GitHub_Trigger'
+      - name: Trigger Jenkins Job via API
+        run: |
+          curl -X POST "http://52.66.249.21:8080/job/GitHub_Trigger/build" \
+            --user "${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_PAT }}"
