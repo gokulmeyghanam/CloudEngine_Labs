@@ -1,0 +1,13 @@
+name: trigger jenkins job
+on: [push]
+jobs:
+  trigger-jenkins:
+    runs-on: ubuntu-latest
+    steps:
+      - id: myjob
+        uses: shihyuho/go-jenkins-trigger@v1
+        with:
+          jenkins-url: "${{ secrets.JENKINS_URL }}"
+          jenkins-user: "${{ secrets.JENKINS_USER }}"
+          jenkins-pat: "${{ secrets.JENKINS_PAT }}"
+          job: "GitHub_Trigger"
