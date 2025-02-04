@@ -4,10 +4,10 @@ jobs:
   trigger-jenkins:
     runs-on: ubuntu-latest
     steps:
-      - id: myjob
-        uses: shihyuho/go-jenkins-trigger@v1
+      - id: trigger jenkins job
+        uses: aloong-actions/jenkins-job-trigger@v1
         with:
-          jenkins-url: "${{ secrets.JENKINS_URL }}"
-          jenkins-user: "${{ secrets.JENKINS_USER }}"
-          jenkins-pat: "${{ secrets.JENKINS_PAT }}"
-          job: "GitHub_Trigger"
+          jenkins-url: 'http://52.66.249.21:8080'
+          jenkins-user: ${{ secrets.JENKINS_USER }}
+          jenkins-pat: ${{ secrets.JENKINS_PAT }}
+          job: 'GitHub_Trigger'
