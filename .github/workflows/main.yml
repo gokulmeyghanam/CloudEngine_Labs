@@ -11,6 +11,5 @@ jobs:
           jenkins-user: ${{ secrets.JENKINS_USER }}
           jenkins-pat: ${{ secrets.JENKINS_PAT }}
           job: 'GitHub_Trigger'
-          params-json: '""'
 
         
