@@ -15,4 +15,4 @@ jobs:
           jenkins_user: ${{ secrets.JENKINS_USER }}
           jenkins_token: ${{ secrets.JENKINS_PAT }}
           job_name: "GitHub_Trigger"
-          job_timeout: "3600" 
+
