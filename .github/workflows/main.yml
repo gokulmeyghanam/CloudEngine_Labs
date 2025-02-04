@@ -16,9 +16,8 @@ jobs:
       - name: Trigger Jenkins Job
         uses: sbitio/trigger-jenkins-job@master
         with:
-          jenkins_url: 'http://52.66.249.21:8080/' # Replace with your Jenkins server URL
+          jenkins_url: 'http://52.66.249.21:8080' # Replace with your Jenkins server URL
           jenkins_user: 'CloudEngineLabs' # Replace with your Jenkins username
-          jenkins_token: ${{ secrets.JENKINS_TOKEN }} # Use a GitHub Secret for your Jenkins API Token
+          jenkins_token: '11c7c0b772c04ee6930ce179e84f4b285d' # Use a GitHub Secret for your Jenkins API Token
           job_name: 'GitHub_Trigger' # Replace with the name of your Jenkins job
-          wait_for_job: 'true' # Wait for the Jenkins job to complete
-          fail_if_job_failed: 'true' # Fail the GitHub Action if the Jenkins job fails
+        
