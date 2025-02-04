@@ -4,7 +4,7 @@ jobs:
   trigger-jenkins:
     runs-on: ubuntu-latest
     steps:
-      - id: trigger jenkins job
+      - id: trigger
         uses: aloong-actions/jenkins-job-trigger@v1
         with:
           jenkins-url: 'http://52.66.249.21:8080'
