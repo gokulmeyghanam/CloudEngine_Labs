@@ -31,10 +31,10 @@ jobs:
         run: docker push gokulmeyghanam/flask-app:latest
 
       - name: Tag Docker Image for Nexus (`docker-repo`)
-        run: docker tag gokulmeyghanam/flask-app:latest 15.206.70.92:8082/docker-repo/flask-app:latest
+        run: docker tag gokulmeyghanam/flask-app:latest 15.206.70.92:8081/docker-repo/flask-app:latest
 
       - name: Log in to Nexus Docker Repo
-        run: echo "Gokul@866819" | docker login -u "admin" --password-stdin 15.206.70.92:8082
+        run: echo "Gokul@866819" | docker login -u "admin" --password-stdin 15.206.70.92:8081
 
       - name: Push Docker Image to Nexus (`docker-repo`)
-        run: docker push 15.206.70.92:8082/docker-repo/flask-app:latest
+        run: docker push 15.206.70.92:8081/docker-repo/flask-app:latest
