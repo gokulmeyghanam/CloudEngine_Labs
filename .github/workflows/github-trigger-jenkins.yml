@@ -33,6 +33,12 @@ jobs:
       - name: Tag Docker Image for Nexus (`docker-repo`)
         run: docker tag gokulmeyghanam/flask-app:latest 15.206.70.92:8082/docker-repo/flask-app:latest
 
+      - name: Allow HTTP for Nexus Docker Registry
+        run: |
+          echo '{ "insecure-registries": ["15.206.70.92:8082"] }' | sudo tee /etc/docker/daemon.json
+          sudo systemctl restart docker
+          sudo systemctl daemon-reexec
+
       - name: Log in to Nexus Docker Repo (HTTP)
         run: |
           echo "Gokul@866819" | docker login -u "admin" --password-stdin http://15.206.70.92:8082 || exit 1
