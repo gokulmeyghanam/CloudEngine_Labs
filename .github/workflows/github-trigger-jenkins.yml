@@ -1,4 +1,4 @@
-name: Python Flask CI Pipeline
+name: Python_Github Artifact_Pipeline
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  docker:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,32 +16,19 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.9
+          python-version: '3.11'
+          cache: 'pip'
 
-      - name: Install Dependencies
-        run: pip install flask
-
-      - name: Build Docker Image
-        run: docker build -t gokulmeyghanam/flask-app:latest .
-
-      - name: Log in to Docker Hub
-        run: echo "Gokul@8668" | docker login -u "gokulmeyghanam" --password-stdin
-
-      - name: Push Docker Image to Docker Hub
-        run: docker push gokulmeyghanam/flask-app:latest
-
-      - name: Tag Docker Image for Nexus (`docker-repo`)
-        run: docker tag gokulmeyghanam/flask-app:latest 15.206.70.92:8082/docker-repo/flask-app:latest
-
-      - name: Allow HTTP for Nexus Docker Registry
+      - name: Install dependencies
         run: |
-          echo '{ "insecure-registries": ["15.206.70.92:8082"] }' | sudo tee /etc/docker/daemon.json
-          sudo systemctl restart docker
-          sudo systemctl daemon-reexec
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Log in to Nexus Docker Repo (HTTP)
-        run: |
-          echo "Gokul@866819" | docker login -u "admin" --password-stdin http://15.206.70.92:8082 || exit 1
-
-      - name: Push Docker Image to Nexus (`docker-repo`)
-        run: docker push 15.206.70.92:8082/docker-repo/flask-app:latest || exit 1
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-build
+          path: |
+            **/*.py
+            requirements.txt
+          retention-days: 5
