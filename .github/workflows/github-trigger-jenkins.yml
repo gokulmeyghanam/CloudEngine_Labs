@@ -3,7 +3,7 @@ name: Python Flask CI Pipeline
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   docker:
@@ -33,8 +33,9 @@ jobs:
       - name: Tag Docker Image for Nexus (`docker-repo`)
         run: docker tag gokulmeyghanam/flask-app:latest 15.206.70.92:8082/docker-repo/flask-app:latest
 
-      - name: Log in to Nexus Docker Repo
-        run: echo "Gokul@866819" | docker login -u "admin" --password-stdin http://15.206.70.92:8082
+      - name: Log in to Nexus Docker Repo (HTTP)
+        run: |
+          echo "Gokul@866819" | docker login -u "admin" --password-stdin http://15.206.70.92:8082 || exit 1
 
       - name: Push Docker Image to Nexus (`docker-repo`)
-        run: docker push 15.206.70.92:8082/docker-repo/flask-app:latest
+        run: docker push 15.206.70.92:8082/docker-repo/flask-app:latest || exit 1
